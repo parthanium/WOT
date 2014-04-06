@@ -3,12 +3,14 @@ import urllib.request,random,string
 #Use channels.txt to enter channel numbers
 channels = [241,8,207,53,59,99,63,182,101,102,103,513,100,105,66]
 
+#Randomizing function
 def r():
     val = ''
     for i in range(5):
         val = val + random.choice(string.ascii_lowercase)
     return val
 
+#Main function
 def f(n):
     try:
         page = 'http://tv.burrp.com/channel/' + r() + '/' + str(n) + '/'
@@ -40,6 +42,5 @@ def f(n):
 
 for x in range(len(channels)):
     f(channels[x])
-
 
 filler = input('\nPress Enter to exit ...')
