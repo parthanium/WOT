@@ -11,7 +11,8 @@ Dependencies
 </ul>
 Usage
 =====
-Note your desired channel numbers from "channels.txt" and then edit "channels" in "WOT.py". You can also run it without editing to get a predefined popular channel list.
+Note your desired channel numbers from <code>channels.txt</code> and then edit <code>channels</code> in <code>WOT.py</code>. You can also run it without editing to get a predefined popular channel list.
 
+You can also build <code>channels.txt</code> yourself by running <code>finder.py</code>
 <h5>By Parth Dhar<br />
 2014</h5>
