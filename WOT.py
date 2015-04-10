@@ -1,7 +1,15 @@
-import urllib.request,random,string
+import urllib.request,random,string,os.path
 
-#Use channels.txt to enter channel numbers
-channels = [241,8,207,53,59,99,63,182,101,102,103,513,100,105,66]
+#Asks for channel numbers to store in file 'channelFile'. (Code editing no longer required)
+if os.path.isfile('channelFile'):
+    f = open('channelFile','r')
+    channels = [int(x) for x in f.read().split()]
+else:
+    print('Please enter Burrp channel numbers separated by a space')
+    chnums = str(input())
+    f = open('channelFile','rw')
+    f.write(chnums)
+    channels = [int(x) for x in f.read().split()]
 
 #Randomizing function
 def r():
@@ -16,12 +24,13 @@ def f(n):
         page = 'http://tv.burrp.com/channel/' + r() + '/' + str(n) + '/'
         response = urllib.request.urlopen(page)
         text = str(response.read())
+        currentText = text[text.find('resultTime resultCurrent'):text.find('Playing Now')]
+        currentText = currentText.replace(r'&rsquo;','\'')
         #Now finding the latest show
-        ls = text.find('<strong>')
-        le = text.find('</strong>')
-        link = text[ls+8:le-70]
-
-        if text.find('(Season') != -1 :
+        ls = currentText.find('<strong>')
+        le = currentText.find('</strong>')
+        link = currentText[ls+8:le-70]
+        if currentText.find('(Season') != -1 :
             list = link.split()[len(link.split())-2]
             #Replacement
             list = list.replace(r'\t','')
